@@ -40,6 +40,10 @@ git push origin HEAD
 
 All didn't work
 
+Found in git-pull
+
+file:///C:/Program%20Files/Git/mingw64/share/doc/git-doc/git-pull.html
+
 --allow-unrelated-histories
 
 John-Twitter-EMitter> git pull --allow-unrelated-histories origin main
@@ -60,5 +64,56 @@ Merge made by the 'ort' strategy.
  create mode 100644 LICENSE
  create mode 100644 README.md
 
-I think did the trick.
+Looks like it did the trick.
+
+
+Still needed to do `git push --set-upstream origin main`
+
+PS C:\Users\johnc\Documents\Computer\SDMM\John-Twitter-EMitter> git push
+fatal: The current branch main has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin main
+
+PS C:\Users\johnc\Documents\Computer\SDMM\John-Twitter-EMitter> git push --set-upstream origin main
+Enumerating objects: 12, done.
+Counting objects: 100% (12/12), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (11/11), done.
+Writing objects: 100% (11/11), 3.42 KiB | 233.00 KiB/s, done.
+Total 11 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), done.
+To https://github.com/EncompassingResidential/John-Twitter-EMitter.git
+   aaf5edc..acb3741  main -> main
+branch 'main' set up to track 'origin/main'.
+
+
+To create React App
+
+PS C:\Users\johnc\Documents\Computer\SDMM\John-Twitter-EMitter> npx create-react-app@latest twitter-emitter-client
+
+Creating a new React app in C:\Users\johnc\Documents\Computer\SDMM\John-Twitter-EMitter\twitter-emitter-client.
+
+Success! Created twitter-emitter-client at C:\Users\johnc\Documents\Computer\SDMM\John-Twitter-EMitter\twitter-emitter-client
+Inside that directory, you can run several commands:
+
+  npm start
+    Starts the development server.
+
+  npm run build
+    Bundles the app into static files for production.
+
+  npm test
+    Starts the test runner.
+
+  npm run eject
+    Removes this tool and copies build dependencies, configuration files
+    and scripts into the app directory. If you do this, you can’t go back!
+
+We suggest that you begin by typing:
+
+  cd twitter-emitter-client
+  npm start
+
+Happy hacking!
 
