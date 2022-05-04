@@ -117,3 +117,18 @@ We suggest that you begin by typing:
 
 Happy hacking!
 
+# C# Sharp
+
+To run C# from Visual Studio Code (VS Code)
+
+This was .NET 5, I am using .NET 6.
+https://www.softwarepronto.com/2021/01/visual-studio-code-creating-cwebapi.html
+
+dotnet --version
+
+cd C:\Users\johnc\Documents\Computer\SDMM\John-Twitter-EMitter
+
+dotnet new webapi --name twitter-emitter-server
+
+create C:\Users\johnc\Documents\Computer\SDMM\John-Twitter-EMitter\twitter-emitter-server
+
