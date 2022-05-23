@@ -193,3 +193,18 @@ Additional commands from bundled tools:
   watch             Start a file watcher that runs a command when files change.
 
 Run 'dotnet [command] --help' for more information on a command.
+
+Visual Studio -> Tools -> NuGet Package Manager -> Package Manager Console
+
+/*
+Per https://code-maze.com/configure-postgresql-ef-core/ 
+
+To install PostgreSQL
+
+*/
+
+PM> Install-Package Npgsql.EntityFrameworkCore.PostgreSQL
+Restoring packages for C:\Users\johnc\Documents\Computer\SDMM\John-Twitter-EMitter\twitter-emitter-server\twitter-emitter-server.csproj...
+  GET https://api.nuget.org/v3-flatcontainer/npgsql.entityframeworkcore.postgresql/index.json
+  OK https://api.nuget.org/v3-flatcontainer/npgsql.entityframeworkcore.postgresql/index.json 162ms
+  GET https://api.nuget.org/v3-flatcontainer/npgsql.entityframeworkcore.postgresql/6.0.4/npgsql.entityframeworkcore.postgresql.6.0.4.nupkg

@@ -23,7 +23,7 @@ builder.Services.AddSwaggerGen();
 // var cs = builder.Configuration.GetConnectionString("PostgreSQL-twitter-emitter");
 
 //  The next PostgreSQL lines are from https://zetcode.com/csharp/postgresql/
-var cs = "";
+var cs = "Server=localhost;Database=twitter-emitter;Port=1463;User Id=twitter-emitter-write;Password=";
 
 Console.WriteLine($"sql connection string is <{cs}>");
 
