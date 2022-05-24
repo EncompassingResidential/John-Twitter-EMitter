@@ -208,3 +208,55 @@ Restoring packages for C:\Users\johnc\Documents\Computer\SDMM\John-Twitter-EMitt
   GET https://api.nuget.org/v3-flatcontainer/npgsql.entityframeworkcore.postgresql/index.json
   OK https://api.nuget.org/v3-flatcontainer/npgsql.entityframeworkcore.postgresql/index.json 162ms
   GET https://api.nuget.org/v3-flatcontainer/npgsql.entityframeworkcore.postgresql/6.0.4/npgsql.entityframeworkcore.postgresql.6.0.4.nupkg
+  
+
+Has some great C# connecting and talking to PostgreSQL.
+https://zetcode.com/csharp/postgresql/
+
+
+/* 
+ * PgSql library / classes has some great examples even though it is a PostgreSQL library I'm not using.
+   Some differences of course with Npgsql library / classes, but so many of the calls are the same.
+   https://www.devart.com/dotconnect/postgresql/docs/Devart.Data.PostgreSql~Devart.Data.PostgreSql.PgSqlDataReader~GetValues.html
+*/
+
+Good video on secret hiding in your C# Visual Studio project / solution:
+https://www.youtube.com/watch?v=BGW4FnEB-CM
+
+GitHub : https://github.com/Elfocrash/aws-videos/tree/master/ParameterStoreExample/ParameterStoreExample.Api
+
+PS C:\Users\johnc\Documents\Computer\SDMM\John-Twitter-EMitter\twitter-emitter-server> dotnet user-secrets init
+The MSBuild project 'C:\Users\johnc\Documents\Computer\SDMM\John-Twitter-EMitter\twitter-emitter-server\twitter-emitter-server.csproj' has already been initialized with a UserSecretsId.
+
+VS NuGet manager - install
+Microsoft.Extensions.Configuration.Json
+Microsoft.Extensions.Configuration.Binder
+
+/*
+ * https://www.youtube.com/watch?v=BGW4FnEB-CM
+ * Add services to the container.
+ * 
+ * from file launchSettings.json
+ * builder.Environment.EnvironmentName string is <Development315>
+ * builder.Environment.ApplicationName string is <twitter-emitter-server>
+ *
+ */
+var env = builder.Environment.EnvironmentName;
+var appName = builder.Environment.ApplicationName;
+
+
+if (builder.Environment.EnvironmentName != "local") {
+	builder.Configuration.AddSecretsManager(region: RegionEndpoint.EUWest2,
+		configurator: options =>
+		{
+												// StartsWith string is what the YouTuber put in his AWS project Secret settings
+			options.SecretFilter = entry => entry.Name.StartsWith($"{env}_{appName}")
+			options.KeyGenerator = (entry, s) => s
+					.Replace($"{env}_{appName}", string.Empty)
+					.Replace("__", ":");
+		});
+}
+
+builder.Services.Configure<DatabaseSettings>(
+	builder.Configuration.GetSection(DatabaseSettings.SectionName));
+

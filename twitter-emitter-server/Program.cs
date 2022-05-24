@@ -1,10 +1,27 @@
 using twitter_emitter_server.Models;
 using twitter_emitter_server.Data;
 using Npgsql;
+// using Microsoft.Extensions.Configuration.Json;
+// using Microsoft.Extensions.Configuration.Binder;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+/*
+ * Add services to the container.
+ * 
+ * from file launchSettings.json
+ * builder.Environment.EnvironmentName string is <Development315>
+ * builder.Environment.ApplicationName string is <twitter-emitter-server>
+ *
+ */
+var env = builder.Environment.EnvironmentName;
+var appName = builder.Environment.ApplicationName;
+
+Console.WriteLine($"builder.Environment.EnvironmentName string is <{env}>");
+Console.WriteLine($"builder.Environment.ApplicationName string is <{appName}>");
+
+var configDBPostgres = ConfigurationHelper.GetByName("DatabaseSettings:PostgreSQL-twitter-emitter");
+Console.WriteLine($"config.GetSection('DatabaseSettings')['PostgreSQL - twitter - emitter'] <<{configDBPostgres}>>");
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
