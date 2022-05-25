@@ -260,3 +260,7 @@ if (builder.Environment.EnvironmentName != "local") {
 builder.Services.Configure<DatabaseSettings>(
 	builder.Configuration.GetSection(DatabaseSettings.SectionName));
 
+/*
+ * https://enlabsoftware.com/development/secure-sensitive-configuration-data-using-secrets-manager.html
+ */
+

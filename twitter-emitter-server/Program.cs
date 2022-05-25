@@ -1,7 +1,9 @@
 using twitter_emitter_server.Models;
 using twitter_emitter_server.Data;
 using Npgsql;
-// using Microsoft.Extensions.Configuration.Json;
+
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration.Json;
 // using Microsoft.Extensions.Configuration.Binder;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,8 +22,17 @@ var appName = builder.Environment.ApplicationName;
 Console.WriteLine($"builder.Environment.EnvironmentName string is <{env}>");
 Console.WriteLine($"builder.Environment.ApplicationName string is <{appName}>");
 
+// Worked - Retrieved the secrets.json values
+//          AFTER restarting the Visual Studio IDE
 var configDBPostgres = ConfigurationHelper.GetByName("DatabaseSettings:PostgreSQL-twitter-emitter");
-Console.WriteLine($"config.GetSection('DatabaseSettings')['PostgreSQL - twitter - emitter'] <<{configDBPostgres}>>");
+Console.WriteLine($"\n   config.GetSection('DatabaseSettings:PostgreSQL-twitter-emitter')   <<{configDBPostgres}>>\n");
+
+var configSecretAPIKey = ConfigurationHelper.GetByName("TwitterSettings:Twitter-API-Key-Secret");
+Console.WriteLine($"\n   ConfigurationHelper.GetByName('TwitterSettings:Twitter-API-Key-Secret') >>{configSecretAPIKey}<<\n");
+
+var configAPIBearerToken = ConfigurationHelper.GetByName("TwitterSettings:Twitter-API-Bearer-Token");
+Console.WriteLine($"\n   ConfigurationHelper.GetByName('TwitterSettings:Twitter-API-Bearer-Token') >>{configAPIBearerToken}<<\n");
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -40,11 +51,11 @@ builder.Services.AddSwaggerGen();
 // var cs = builder.Configuration.GetConnectionString("PostgreSQL-twitter-emitter");
 
 //  The next PostgreSQL lines are from https://zetcode.com/csharp/postgresql/
-var cs = "Server=localhost;Database=twitter-emitter;Port=1463;User Id=twitter-emitter-write;Password=";
+//  See above var cs = "Server=localhost;Database=twitter-emitter;Port=1463;User Id=twitter-emitter-write;Password=";
 
-Console.WriteLine($"sql connection string is <{cs}>");
+Console.WriteLine($"sql connection string is <{configDBPostgres}>");
 
-var con = new NpgsqlConnection(cs);
+var con = new NpgsqlConnection(configDBPostgres);
 
 con.Open();
 
